@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>app-management</title>
+  <link rel="stylesheet" href="./css/reset.css" />
+  <link rel="stylesheet" href="./css/index.css" />
+  <script
+    src="https://code.jquery.com/jquery-1.12.4.min.js"
+    integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+    crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="dialog">
+    <div class="dialog-header">设置快捷方式</div>
+
+    <div class="category">
+      <div class="category-title">
+        <h2 class="title">已配置应用</h2>
+        <span class="notice">（拖拽排序）</span>
+      </div>
+
+      <div class="category-content done"></div>
+    </div>
+
+    <div class="category">
+      <div class="category-title">
+        <h2 class="title">全部应用</h2>
+      </div>
+
+      <div class="category-content all"></div>
+    </div>
+
+    <div class="dialog-footer">
+      <div class="btn-group">
+        <button class="btn cancel">取消</button>
+        <button class="btn ok">完成</button>
+      </div>
+    </div>
+  </div>
+
+
+  <script type="text/javascript" src="./js/index.js"></script>
+  <script type="text/javascript" src="./js/drag.js"></script>
+</body>
+</html>
