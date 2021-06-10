@@ -28,6 +28,7 @@ function generatorAllApps() {
 
 function generatorDoneApps() {
   var $doneAppContainer = $('.category-content.done');
+  $doneAppContainer.html('<div class="clear"></div>');
   generatorApps($doneAppContainer, doneApps);
 }
 
@@ -42,23 +43,19 @@ function generatorApps($container, arr) {
 function generatorAppItem(info) {
   var appItem = document.createElement('div');
   var $appItem = $(appItem);
-  $appItem.attr('data-id', info.id);
-  $appItem.addClass('app-item');
+  $appItem.attr('data-id', info.id).addClass('app-item');
 
   var iconOperator = document.createElement('i');
   var $iconOperator = $(iconOperator);
-  $iconOperator.addClass('iconfont');
-  $iconOperator.addClass('operator');
-  $iconOperator.addClass(info.isDone ? 'delete' : 'add');
-  $iconOperator.html(info.isDone ? '&#xe613;' : '&#xe658;');
+  $iconOperator.addClass('iconfont').addClass('operator')
+    .addClass(info.isDone ? 'delete' : 'add')
+    .html(info.isDone ? '&#xe613;' : '&#xe658;');
 
   $iconOperator.click(handleOperator);
 
   var icon = document.createElement('i');
   var $icon = $(icon);
-  $icon.addClass('iconfont');
-  $icon.addClass('icon');
-  $icon.html(info.icon);
+  $icon.addClass('iconfont').addClass('icon').html(info.icon);
 
   var text = document.createElement('div');
   var $text = $(text);
@@ -92,5 +89,23 @@ function handleOperator() {
     doneApps.push(curApp);
   }
 
-  console.log(doneApps);
+  changeAllAppIcon();
+  generatorDoneApps();
+}
+
+function changeAllAppIcon() {
+  var allLen = allApps.length;
+  var $allAppItems = $('.category-content.all .app-item');
+  for (var i = 0; i < allLen; i++) {
+    $allAppItems.eq(i).children().first()
+      .removeClass('delete').addClass('add').html('&#xe658;');
+  }
+
+  var len = doneApps.length;
+  for (var j = 0; j < len; j++) {
+    var curId = doneApps[j].id;
+    var $curAllApp = $('.category-content.all .app-item[data-id='+ curId +']');
+    var $iconOperator = $curAllApp.children().first();
+    $iconOperator.removeClass('add').addClass('delete').html('&#xe613;');
+  }
 }
